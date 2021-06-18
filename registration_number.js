@@ -15,13 +15,13 @@ const addButton = document.querySelector(".addButton");
 // get reference to the counter
 //const counterElement = document.querySelector(".counter");
 
-// get a reference to the delete button
+// get a reference to the reset button
 const resetButton = document.querySelector(".resetButton");
 
 // get/make reference to a parent element of registrations
 const registrationsParent = document.querySelector("p");
 
-// make an instance of the greet factory function
+// make an instance of the registrations factory function
 let regInstatnce = Registrations();
 
 // local storage to an empty array from the start
@@ -150,18 +150,17 @@ function removeRegistrations() {
 // }
 
 
-//load items in the local storage
-
 
 // click handler for displaying/adding the registrations
 addButton.addEventListener("click", function() {
     addRegistration() 
-    displayRemoveButton()
-    //clear input field
+    
+    ///displayRemoveButton()
+    
     registrationInput.value = ''
 });
 
-// click handler for delete button
+// click handler for reset button
 resetButton.addEventListener("click", function() {
     localStorage.setItem("registrations", [])
     localStorage.setItem("registrations", 0)
