@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"> 
+    <title>Registration Numbers Project</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="errorText">
+            <p></p>
+        </div>
+        <div class="registration">
+            <h1>Registration number list</h1>
+        </div>
+        <div class="registration-input">
+            <input type="text" name="" class="registrationText" value="" placeholder="eg CA 12345">
+        </div>
+        <h3>Select a Town</h3>
+        <div class="buttons">
+            <label class="">
+                <input type="radio" name="radioButton" class="radioButton" value="Cape Town">
+                <span class="label-body">Cape Town</span>
+            </label>
+            <label class="">
+                <input type="radio" name="radioButton" class="radioButton" value="Paarl">
+                <span class="label-body">Paarl</span>
+            </label>
+            <label class="">
+                <input type="radio" name="radioButton" class="radioButton" value="Belville">
+                <span class="label-body">Belville</span>
+            </label>
+        </div>
+        <div class="registrations-display">
+            <button class="addButton">Add Registration</button>
+            <button class="resetButton">Reset Registrations</button>
+            <textarea name="display" rows="2" cols="20" class="display" class="display"></textarea>
+        </div>
+    </div>
+
+<script src="factory.js"></script>
+<script src="registration_number.js"></script>
+</body>
+</html>

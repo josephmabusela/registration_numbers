@@ -1,0 +1,70 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    background-color: blanchedalmond;
+    padding: 1em;
+}
+
+p {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.errorText {
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+}
+
+h1, h2, h3 {
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+}
+.registration-input {
+    width: 50%;
+    margin: auto;
+    padding: 1em; 
+}
+
+.registrations-display {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.buttons {
+    width: 50%;
+    margin: auto;
+}
+
+@media(max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1em;
+        width: fit-content;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between; 
+    }
+    .registrations-display {
+        display: flex;
+        justify-content: space-between;
+    }
+    .registration-input {
+        justify-content: space-between;
+    }
+    .registration {
+        float: left;
+        justify-content:first baseline;
+    }
+}
