@@ -4,7 +4,7 @@ const registrationInput = document.querySelector(".registrationText");
 const errorText = document.querySelector(".errorText");
 
 // get references to the radio buttons
-const radioButton = document.querySelector(".radioButton:checked");
+var radioButton = document.querySelector(".radioButton:checked");
 
 // get reference to where the registrations will be displayed
 const registrations = document.querySelector(".display");
@@ -143,7 +143,10 @@ function removeRegistrations() {
 
 // }
 
-
+//event listener to make registrations to remain after reload and error texts
+window.addEventListener('load', () => {
+    localStorageItems()
+})
 
 // click handler for displaying/adding the registrations
 addButton.addEventListener("click", function() {
@@ -152,6 +155,8 @@ addButton.addEventListener("click", function() {
     ///displayRemoveButton()
     
     registrationInput.value = ''
+
+    radioButton = document.querySelector(".radioButton:checked").checked = false;
 });
 
 // click handler for reset button
