@@ -80,34 +80,34 @@ function addRegistration() {
 }
 
 // make a function to display the registrations
-function removeRegistrations() {
-   if (regInstatnce.getCityRegistration().length === 0) {
-        displayError("Add a registration number")
-    } else {
-        const radioBtn = document.querySelector(".radioButton:checked")
-        if (radioBtn) {
-            let cityName = radioBtn.value;
-            regInstatnce.setCityRegistration(cityName);
-            regInstatnce.setCityCode(regInstatnce.getCityRegistration());
+// function removeRegistrations() {
+//    if (regInstatnce.getCityRegistration().length === 0) {
+//         displayError("Add a registration number")
+//     } else {
+//         const radioBtn = document.querySelector(".radioButton:checked")
+//         if (radioBtn) {
+//             let cityName = radioBtn.value;
+//             regInstatnce.setCityRegistration(cityName);
+//             regInstatnce.setCityCode(regInstatnce.getCityRegistration());
 
-            console.log(regInstatnce.getRegistrationList());
+//             console.log(regInstatnce.getRegistrationList());
 
-            var itemRemoved = regInstatnce.getRegistrationList().filter(item => !item.textContent.startsWith(regInstatnce.getCityCode()));
+//             var itemRemoved = regInstatnce.getRegistrationList().filter(item => !item.textContent.startsWith(regInstatnce.getCityCode()));
 
-            var itemsToStay = regInstatnce.getRegistrationList().filter(item => item.textContent.startsWith(regInstatnce.getCityCode()));
+//             var itemsToStay = regInstatnce.getRegistrationList().filter(item => item.textContent.startsWith(regInstatnce.getCityCode()));
 
-            if(itemRemoved.length === 0 && regInstatnce.getRegistrationList().length!== 0) {
-                displayError("Only " + regInstatnce.getCityRegistration() + " plates are here");
-            }
-            for (let i = 0; i < itemRemoved.length; i++) {
-                let removedItem = itemRemoved[i];
-                if (regInstatnce.getCityRegistration() !== "All") {
-                    removedItem.classList.add("hide")
-                }
-            }
-        }
-    }  
-}
+//             if(itemRemoved.length === 0 && regInstatnce.getRegistrationList().length!== 0) {
+//                 displayError("Only " + regInstatnce.getCityRegistration() + " plates are here");
+//             }
+//             for (let i = 0; i < itemRemoved.length; i++) {
+//                 let removedItem = itemRemoved[i];
+//                 if (regInstatnce.getCityRegistration() !== "All") {
+//                     removedItem.classList.add("hide")
+//                 }
+//             }
+//         }
+//     }  
+// }
 
 
 // if (localStorage.getItem("counter")) {
