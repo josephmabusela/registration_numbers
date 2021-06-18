@@ -35,7 +35,7 @@ let registration = localStorage.getItem('registrations').split(',')
 function displayError(err) {
     regInstatnce.setErrorText(err)
     errorText.innerHTML = regInstatnce.getErrorText()
-    errorText.style.height = '40px'
+    errorText.style.height = '20px'
     setTimeout(() => {
         errorText.innerHTML = ''
         errorText.style.height = '0'
@@ -57,12 +57,6 @@ function localStorageItems(){
     }
 }
 
-function displayRemoveButton() {
-    if(registrations.length > 1) {
-        deleteButton.style.display = 'block'
-    }
-}
-
 function addRegistration() {
     regInstatnce.setRegistrationNumber(registrationInput.value)
     let numbers = regInstatnce.getRegistrationNumber().slice(2, regInstatnce.getRegistrationNumber().length)
@@ -70,7 +64,7 @@ function addRegistration() {
         displayError('Enter registration number')
     }else if(!numbers.match('^[0-9]+$') || regInstatnce.getRegistrationNumber().length > 10) {
         displayError('Enter valid registration number')
-    }else if(!regInstatnce.getRegistrationNumber().startsWith('ca') || !regInstatnce.getRegistrationNumber().startsWith('cy') || !regInstatnce.getRegistrationNumber().startsWith('cj')) {
+    }else if(!(regInstatnce.getRegistrationNumber().startsWith('ca') || regInstatnce.getRegistrationNumber().startsWith('cy') || regInstatnce.getRegistrationNumber().startsWith('cj'))) {
         displayError('Enter Cape Town, Bellville or Paarl registration number')
     }else if(registration.includes(regInstatnce.getRegistrationNumber())) {
         displayError('Registration number already exists')
