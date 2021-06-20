@@ -1,94 +1,69 @@
 function Registrations() {
-    var registrationNumber;
-    var registrationsList = [];
-    var townArray = [];
-    var errorText;
-    var cityRegistration;
-    var cityCode;
+    var registrationList = [];
+    var plateNum;
+    var city;
+    var plate;
 
-    function setRegistrationNumber(numberplate) {
-        registrationNumber = numberplate.toLowerCase().replace(/ /g, "");
+    function setRegistrationCity(numberplate) {
+        city = numberplate
     }
 
-    function getRegistrationNumber() {
-        return registrationNumber
+    function getRegistrationCity() {
+        return city
     }
 
-    function setRegistrationList(item) {
-        registrationsList.push(item)
-    }
+    function setCity() {
+        if (getRegistrationCity() === "cape town") {
+            plate =  "CA "
+        }
 
-    function getRegistrationList() {
-        return registrationsList
-    }
+        if (getRegistrationCity() === "paarl") {
+            plate =  "CY "
+        }
 
-    function setTownArray(plateNumbers) {
-        townArray = plateNumbers
-        townArray.push(plateNumbers)
-    }
-
-    function getTownArray() {
-        return townArray;
-    }
-
-    function setCityRegistration(reg) {
-         cityRegistration = reg
-     } 
-
-    function getCityRegistration() {
-        return cityRegistration
-    }
-
-    function setCityCode(city) {
-        if(city == "Cape Town") {
-            cityCode = "ca"
-        }else if(town == "Bellville"){
-            cityCode = "cj"
-        } else if(town == "Paarl") {
-            cityode = "cy"
-        } else if(town == 'All'){
-            cityCode = "All"
+        if (getRegistrationCity() === "belville") {
+            plate =  "CJ ";
         }
     }
 
-    function getCityCode() {
-        return cityCode;
+    function getCity() {
+
+        return plate
     }
 
-    function removeItem(appendParent, child) {
-        appendParent.removeChild(child)
+    function storedRegistrations(str) {
+       plateNum = str.slice(0).toUpperCase() //+ str.substring(2).toLowerCase();
     }
 
-    function setErrorText(err) {
-        errorText = err;
+    function getstoredRegistrations() {
+        return plateNum;
     }
 
-    function getErrorText() {
-        return errorText
+    function setEnteredRegistrations(userInput) {
+        registrationList = userInput
+    }
+
+    function getEnteredRegistrations() {
+        return registrationList
     }
 
     function exisitingRegistrations() {
-        if (!registrationsList.includes(plate)) {
-            registrationsList.push(plate);
+        if (!registrationList.includes(plateNum)) {
+            registrationList.push(plateNum);
         }
-        return registrationsList
+        return registrationList
     }
 
 
     return {
-        setTownArray,
-        setRegistrationList,
-        getRegistrationList,
-        setRegistrationNumber,
-        getRegistrationNumber,
-        getTownArray,
-        setCityRegistration,
-        getCityRegistration,
-        setCityCode,
-        getCityCode,
-        removeItem,
+        storedRegistrations,
+        setRegistrationCity,
+        getstoredRegistrations,
+        getRegistrationCity,
+        getEnteredRegistrations,
+        setEnteredRegistrations,
         exisitingRegistrations,
-        setErrorText,
-        getErrorText
+        setCity,
+        getCity
     }
 }

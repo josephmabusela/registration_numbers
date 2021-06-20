@@ -4,44 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css"> 
-    <title>Registration Numbers Project</title>
+    <link rel="stylesheet" href="registrations.css"> 
+    <title>Greetings Project</title>
 </head>
 <body>
-    
     <div class="container">
+        <div class="registrations">
+            <h1>Registration Numbers</h1>
+        </div>
         <div class="errorText">
             <p></p>
         </div>
-        <div class="registration">
-            <h1>Registration number list</h1>
-        </div>
         <div class="registration-input">
-            <input type="text" name="" class="registrationText" value="" placeholder="eg CA 12345">
+            <input type="text" name="" class="registrationInput" value="" placeholder="Enter a registration">
         </div>
-        <h3>Select a Town</h3>
+        <h3>Select Greeting Language</h3>
         <div class="buttons">
             <label class="">
-                <input type="radio" name="radioButton" class="radioButton" value="Cape Town">
+                <input type="radio" name="radioButton" class="radioButton" value="cape town">
                 <span class="label-body">Cape Town</span>
             </label>
             <label class="">
-                <input type="radio" name="radioButton" class="radioButton" value="Paarl">
+                <input type="radio" name="radioButton" class="radioButton" value="paarl">
                 <span class="label-body">Paarl</span>
             </label>
             <label class="">
-                <input type="radio" name="radioButton" class="radioButton" value="Belville">
+                <input type="radio" name="radioButton" class="radioButton" value="belville">
                 <span class="label-body">Belville</span>
             </label>
         </div>
-        <div class="registrations-display">
-            <button class="addButton">Add Registration</button>
-            <button class="resetButton">Reset Registrations</button>
-            <textarea name="display" rows="2" cols="20" class="display" class="display"></textarea>
+        <div class="registration-display">
+            <button class="registrationButton">Add Registration!</button>
+            <button class="reset">Reset</button>
+        </div>
+        <div class="registrations-parent">
+
         </div>
     </div>
-
 <script src="factory.js"></script>
-<script src="registration_number.js"></script>
+<script src="registrations.js"></script>
 </body>
 </html>

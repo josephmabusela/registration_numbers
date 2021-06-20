@@ -9,17 +9,39 @@ body {
     padding: 1em;
 }
 
-p {
-    width: 100%;
+.registrations-stored {
+    font-size: 4rem;
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    float: right;
 }
 
 .errorText {
     width: 50%;
     margin: auto;
     padding: 1em;
+}
+
+.registrations-parent {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.registrations-parent {
+    width: 125px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 2px;
+    text-align: center;
+    overflow-y: hidden;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 h1, h2, h3 {
@@ -33,11 +55,10 @@ h1, h2, h3 {
     padding: 1em; 
 }
 
-.registrations-display {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.registration-display {
+    width: 50%;
+    margin: auto;
+    padding: 2em;
 }
 
 .buttons {
@@ -56,14 +77,14 @@ h1, h2, h3 {
         display: flex;
         justify-content: space-between; 
     }
-    .registrations-display {
+    .registration-display{
         display: flex;
         justify-content: space-between;
     }
     .registration-input {
         justify-content: space-between;
     }
-    .registration {
+    .registrations {
         float: left;
         justify-content:first baseline;
     }

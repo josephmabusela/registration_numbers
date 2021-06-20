@@ -1,118 +1,88 @@
 // get references to the input field
-const registrationInput = document.querySelector(".registrationText");
+const registrationInput = document.querySelector(".registrationInput");
 
 const errorText = document.querySelector(".errorText");
 
 // get references to the radio buttons
-var radioButton = document.querySelector(".radioButton:checked");
+const radioButton = document.querySelector(".radioButton");
 
-// get reference to where the registrations will be displayed
-const registrations = document.querySelector(".display");
+// get reference to where the greeting will be displayed
+const registrationsParent = document.querySelector(".registrations-parent");
 
-// get reference to the add button
-const addButton = document.querySelector(".addButton");
+// get reference to the greeting button
+const registrationButton = document.querySelector(".registrationButton");
 
 // get reference to the counter
-//const counterElement = document.querySelector(".counter");
+const registrationsStored = document.querySelector(".registrations-stored");
 
 // get a reference to the reset button
-const resetButton = document.querySelector(".resetButton");
+const reset = document.querySelector(".reset")
 
-// get/make reference to a parent element of registrations
-const registrationsParent = document.querySelector("p");
+// make an instance of the greet factory function
+let registrationInstance = Registrations();
 
-// make an instance of the registrations factory function
-let regInstatnce = Registrations();
+// make a function to display the greetings
+function showRegistrations() {
+    // get a reference to the checked radio buttons
+    var radioBtn = document.querySelector(".radioButton:checked");
 
-// local storage to an empty array from the start
-if (localStorage.getItem("registrations") === null) {
-    localStorage.setItem("registrations", [])
-}
+    if (radioBtn) {
+        var checkedCity = radioBtn.value;
+        //registrationInstance.getRegistrationCity(radioBtn.value);
+    }
 
-//reference to reg numbers saved in local storage
-let registration = localStorage.getItem('registrations').split(',')
-//function to display errorText text
-function displayError(err) {
-    regInstatnce.setErrorText(err)
-    errorText.innerHTML = regInstatnce.getErrorText()
-    errorText.style.height = '20px'
-    setTimeout(() => {
-        errorText.innerHTML = ''
-        errorText.style.height = '0'
+    registrationInstance.setRegistrationCity(checkedCity);
+    registrationInstance.getRegistrationCity();
+    registrationInstance.setCity()
 
-    }, 2000);
-}
+    if (registrationInput.value !== "" && radioBtn) {
+        registrationsParent.innerHTML = /*registrationInstance.getCity() +*/ registrationInput.value.slice(0).toUpperCase() //+ registrationInput.value.slice(1);
+        registrationsParent.style.color = "black"
 
-//load/display items in the local storage
-function localStorageItems(){
-    let storageList = [].concat(localStorage.getItem('registrations').split(','))
-    let newStorageList = [... new Set(storageList)]
-    for(let i = 1; i < newStorageList.length; i++){
-        if(newStorageList.length != 0){
-            let createdItem = document.createElement('h2')
-            registrationsParent.appendChild(createdItem)
-            createdItem.innerHTML = newStorageList[i]
-            regInstatnce.setRegistrationList('h2')
-        }
+    }
+
+    // prompt usser to enter a valid name with no numbers or characters
+    if (!registrationInput.value.match(/[a-zA-Z]/ig)) {
+        errorText.innerHTML = "Please enter valid registration"
+        errorText.style.color = "red"
+
+        setTimeout(() => {
+            errorText.innerHTML = ""
+        }, 3000);
+    }
+
+    // prompt user to enter a name if they havent
+    if (registrationInput.value === "") {
+        errorText.innerHTML = "Enter a registration";
+        errorText.style.color = "red"
+
+        setTimeout(() => {
+            errorText.innerHTML = ""
+        }, 3000);
+    }
+
+    // prompt user to select a language if they havent
+    if (!radioBtn) {
+        errorText.innerHTML = "Select a city";
+        errorText
+        .style.color = "red";
+
+        setTimeout(() => {
+            errorText.innerHTML = ""
+        }, 3000);
     }
 }
 
-function addRegistration() {
-    regInstatnce.setRegistrationNumber(registrationInput.value)
-    let numbers = regInstatnce.getRegistrationNumber().slice(2, regInstatnce.getRegistrationNumber().length)
-    if(registrationInput.value === '') {
-        displayError('Enter registration number')
-    }else if(!numbers.match('^[0-9]+$') || regInstatnce.getRegistrationNumber().length > 10) {
-        displayError('Enter valid registration number')
-    }else if(!(regInstatnce.getRegistrationNumber().startsWith('ca') || regInstatnce.getRegistrationNumber().startsWith('cy') || regInstatnce.getRegistrationNumber().startsWith('cj'))) {
-        displayError('Enter Cape Town, Bellville or Paarl registration number')
-    }else if(registration.includes(regInstatnce.getRegistrationNumber())) {
-        displayError('Registration number already exists')
-    }else {
-        let registrationPlates = registration
-        regInstatnce.setTownArray(registrationPlates)
-        localStorage.setItem('registrations', regInstatnce.getTownArray())
-        let createdItems = document.createElement('h2')
-        createdItems.innerHTML = regInstatnce.getRegistrationNumber()
-        registrationsParent.appendChild(createdItems)
-        regInstatnce.setRegistrationList(createdItems)
-    }
+  //initialize registrations to equal local storage
+  if (localStorage["registrations"]) {
+    registrations = localStorage["registrations"]
+
+    let createdElem = document.createElement('li')
+    registrationsParent.appendChild(createdElem)
+    createdElem.innerHTML = localStorage
+    registrationInstance.setEnteredRegistrations('li')
+    registrationsParent.innerHTML = registrations
 }
-
-// make a function to display the registrations
-// function removeRegistrations() {
-//    if (regInstatnce.getCityRegistration().length === 0) {
-//         displayError("Add a registration number")
-//     } else {
-//         const radioBtn = document.querySelector(".radioButton:checked")
-//         if (radioBtn) {
-//             let cityName = radioBtn.value;
-//             regInstatnce.setCityRegistration(cityName);
-//             regInstatnce.setCityCode(regInstatnce.getCityRegistration());
-
-//             console.log(regInstatnce.getRegistrationList());
-
-//             var itemRemoved = regInstatnce.getRegistrationList().filter(item => !item.textContent.startsWith(regInstatnce.getCityCode()));
-
-//             var itemsToStay = regInstatnce.getRegistrationList().filter(item => item.textContent.startsWith(regInstatnce.getCityCode()));
-
-//             if(itemRemoved.length === 0 && regInstatnce.getRegistrationList().length!== 0) {
-//                 displayError("Only " + regInstatnce.getCityRegistration() + " plates are here");
-//             }
-//             for (let i = 0; i < itemRemoved.length; i++) {
-//                 let removedItem = itemRemoved[i];
-//                 if (regInstatnce.getCityRegistration() !== "All") {
-//                     removedItem.classList.add("hide")
-//                 }
-//             }
-//         }
-//     }  
-// }
-
-
-// if (localStorage.getItem("counter")) {
-//     counterElement.innerHTML = localStorage.getItem("counter")
-// }
 
 // function counterIncrease() {
     
@@ -121,9 +91,9 @@ function addRegistration() {
 
 //     localStorage.setItem("counter", count);
 //     // display the local storage value
-//     counterElement.innerHTML = localStorage.getItem("counter");
+//     registrationsStored.innerHTML = localStorage.getItem("counter");
 
-//     // initialize names to an empty array
+//     // initialize registrations to an empty array
 //     let registrations = [];
     
 //     if (localStorage.getItem("counter") == NaN ) {
@@ -133,41 +103,43 @@ function addRegistration() {
 //     if (localStorage.getItem("registrations") === null) {
 //         localStorage.setItem("registrations", [])
 //     }
-
-//     //initialize names to equal local storage
-//     if (localStorage["registrations"]) {
-//         registrations = localStorage["registrations"]
-
-//         display.innerHTML = registrations
-//     }
-
 // }
 
-//event listener to make registrations to remain after reload and error texts
-window.addEventListener('load', () => {
-    localStorageItems()
-})
 
-// click handler for displaying/adding the registrations
-addButton.addEventListener("click", function() {
-    addRegistration() 
-    
-    ///displayRemoveButton()
-    
-    registrationInput.value = ''
+// click handler for displaying the greetings
+registrationButton.addEventListener("click", function() {
 
-    radioButton = document.querySelector(".radioButton:checked").checked = false;
+    //radioBtn = document.querySelector(".radioButton:checked");
+
+    var registrations = [].concat(localStorage.getItem("registrations").split(","))
+
+    registrationInstance.setEnteredRegistrations(registrations)
+    registrationInstance.storedRegistrations(registrationInput.value);
+
+    if (registrationInstance.getstoredRegistrations() != "" && !registrations.includes(registrationInstance.getstoredRegistrations()) && registrationInput.value.match(/[a-zA-Z]/ig) && document.querySelector(".radioButton:checked"))  {
+        localStorage.setItem("registrations", registrationInstance.exisitingRegistrations())
+       // counterIncrease();
+    }
+
+    showRegistrations();
+
+    setTimeout(() => {
+        registrationsParent.innerHTML = ""
+    }, 3000);
+
+    // document.querySelector(".radioButton:uncheck")
+    radioBtn = document.querySelector(".radioButton:checked").checked = false;
 });
 
 // click handler for reset button
-resetButton.addEventListener("click", function() {
+reset.addEventListener("click", function() {
     localStorage.setItem("registrations", [])
-    localStorage.setItem("registrations", 0)
-    registrations.innerHTML = localStorage["registrations"]
-    errorText.innerHTML = "Registrations have been reset!"
+    localStorage.setItem("counter", 0)
+    registrationsStored.innerHTML = localStorage["counter"]
+    errorText.innerHTML = "Counter has been reset!"
     errorText.style.color = "green";
 
-    registrations.innerHTML = ""
+    registrationsParent.innerHTML = ""
 
     setTimeout(() => {
         errorText.innerHTML = ""
