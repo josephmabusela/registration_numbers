@@ -111,7 +111,7 @@ registrationButton.addEventListener("click", function() {
 
     //radioBtn = document.querySelector(".radioButton:checked");
 
-    var registrations = [].concat(localStorage.getItem("registrations").split(","))
+    var registrations = [].concat(localStorage.getItem("registrations").split(" ,"))
 
     registrationInstance.setEnteredRegistrations(registrations)
     registrationInstance.storedRegistrations(registrationInput.value);
@@ -135,7 +135,7 @@ registrationButton.addEventListener("click", function() {
 reset.addEventListener("click", function() {
     localStorage.setItem("registrations", [])
     localStorage.setItem("counter", 0)
-    registrationsStored.innerHTML = localStorage["counter"]
+    registrationsParent.innerHTML = localStorage["counter"]
     errorText.innerHTML = "Counter has been reset!"
     errorText.style.color = "green";
 
