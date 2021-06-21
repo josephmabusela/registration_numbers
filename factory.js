@@ -14,15 +14,15 @@ function Registrations() {
 
     function setCity() {
         if (getRegistrationCity() === "cape town") {
-            plate =  "CA "
+            plate =  "CA"
         }
 
         if (getRegistrationCity() === "paarl") {
-            plate =  "CY "
+            plate =  "CY"
         }
 
         if (getRegistrationCity() === "belville") {
-            plate =  "CJ ";
+            plate =  "CJ";
         }
     }
 
@@ -32,7 +32,7 @@ function Registrations() {
     }
 
     function storedRegistrations(str) {
-       plateNum = str.slice(0).toUpperCase() //+ str.substring(2).toLowerCase();
+       plateNum = str.toUpperCase() //+ str.substring(2).toLowerCase();
     }
 
     function getstoredRegistrations() {

@@ -21,8 +21,25 @@ const reset = document.querySelector(".reset")
 // make an instance of the greet factory function
 let registrationInstance = Registrations();
 
+
+function localStorageItems() {
+    let storageList = [].concat(localStorage)
+}
+
+  //initialize registrations to equal local storage
+  if (localStorage["registrations"]) {
+    registrations = localStorage["registrations"]
+
+    let createdElem = document.createElement('li')
+    registrationsParent.appendChild(createdElem)
+    createdElem.innerHTML = localStorage
+    registrationInstance.setEnteredRegistrations('li')
+    registrationsParent.innerHTML = registrations
+}
+
 // make a function to display the greetings
 function showRegistrations() {
+
     // get a reference to the checked radio buttons
     var radioBtn = document.querySelector(".radioButton:checked");
 
@@ -42,7 +59,7 @@ function showRegistrations() {
     }
 
     // prompt usser to enter a valid name with no numbers or characters
-    if (!registrationInput.value.match(/[a-zA-Z]/ig)) {
+    if (!registrationInput.value.match(/[a-zA-Z0-9]/ig)) {
         errorText.innerHTML = "Please enter valid registration"
         errorText.style.color = "red"
 
@@ -73,16 +90,6 @@ function showRegistrations() {
     }
 }
 
-  //initialize registrations to equal local storage
-  if (localStorage["registrations"]) {
-    registrations = localStorage["registrations"]
-
-    let createdElem = document.createElement('li')
-    registrationsParent.appendChild(createdElem)
-    createdElem.innerHTML = localStorage
-    registrationInstance.setEnteredRegistrations('li')
-    registrationsParent.innerHTML = registrations
-}
 
 // function counterIncrease() {
     
@@ -105,27 +112,32 @@ function showRegistrations() {
 //     }
 // }
 
+//event listener to make reg numbers persistent on reload
+window.addEventListener('load', () => {
+    localStorageItems()
+    //displayRemoveButton()
+})
 
 // click handler for displaying the greetings
 registrationButton.addEventListener("click", function() {
 
     //radioBtn = document.querySelector(".radioButton:checked");
 
-    var registrations = [].concat(localStorage.getItem("registrations").split(" ,"))
+    var registrations = [].concat(localStorage.getItem("registrations").split(","))
 
     registrationInstance.setEnteredRegistrations(registrations)
     registrationInstance.storedRegistrations(registrationInput.value);
 
-    if (registrationInstance.getstoredRegistrations() != "" && !registrations.includes(registrationInstance.getstoredRegistrations()) && registrationInput.value.match(/[a-zA-Z]/ig) && document.querySelector(".radioButton:checked"))  {
+    if (registrationInstance.getstoredRegistrations() != "" && !registrations.includes(registrationInstance.getstoredRegistrations()) && registrationInput.value.match(/[a-zA-Z0-9]/ig) && document.querySelector(".radioButton:checked"))  {
         localStorage.setItem("registrations", registrationInstance.exisitingRegistrations())
        // counterIncrease();
     }
 
     showRegistrations();
 
-    setTimeout(() => {
-        registrationsParent.innerHTML = ""
-    }, 3000);
+    
+    registrationInput.value = ""
+    
 
     // document.querySelector(".radioButton:uncheck")
     radioBtn = document.querySelector(".radioButton:checked").checked = false;
@@ -134,8 +146,8 @@ registrationButton.addEventListener("click", function() {
 // click handler for reset button
 reset.addEventListener("click", function() {
     localStorage.setItem("registrations", [])
-    localStorage.setItem("counter", 0)
-    registrationsParent.innerHTML = localStorage["counter"]
+    //localStorage.setItem("counter", 0)
+    registrationsParent.innerHTML = localStorage["registrations"]
     errorText.innerHTML = "Counter has been reset!"
     errorText.style.color = "green";
 
